@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {HttpClient} from '@angular/common/http'
+import {HttpClient} from "@angular/common/http";
 
 @Component({
     selector: 'login',
@@ -8,22 +8,31 @@ import {HttpClient} from '@angular/common/http'
 })
 export class LoginComponent implements OnInit {
 
-    credentials = {
-        email: '',
-        password: ''
-    }
+    public credentials = {
+        email: 'admin@user.com',
+        password: 'secret'
+    };
 
-    constructor(private http: HttpClient) {
-
+    constructor(private http:HttpClient) {
     }
 
     ngOnInit() {
+
     }
 
-    submit() {
-        this.http.post('http://localhost:8000/api/login', this.credentials)
-            .subscribe((data) => console.log(data));
+    submit(){
+        this.http.post<any>('http://localhost:8000/api/login',this.credentials)
+            .subscribe((data)=>{
+                const token = data.token;
+                this.http.get('http://localhost:8000/api/categories',{
+                    headers:{
+                        'Authorization': `Bearer ${token}`
+                    }
+                })
+                    .subscribe((data)=>console.log(data));
+            });
         return false;
     }
+
 
 }
