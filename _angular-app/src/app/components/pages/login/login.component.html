@@ -1,8 +1,16 @@
+<div class="col col-md-4 offset-4" *ngIf="showMessagesError">
+    <alert-error [(show)]="showMessagesError">
+        Credenciais Inválidas
+    </alert-error>
+</div>
+
 <form class="form-signin" (submit)="submit()">
-  <h1 class="h3 mb-3 font-weight-normal">Code Shopping - Login</h1>
-  <label for="email" class="sr-only">E-mail</label>
-  <input type="email" name="email" [(ngModel)]="credentials.email" id="email"  class="form-control" placeholder="Digite seu e-mail" required autofocus>
-  <label for="password" class="sr-only">Password</label>
-  <input type="password" name="password"   id="password" [(ngModel)]="credentials.password" class="form-control" placeholder="Digite sua senha" required>
-  <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
+    <h1 class="h3 mb-3 font-weight-normal">Code Shopping - Login</h1>
+    <label for="email" class="sr-only">E-mail</label>
+    <input type="email" name="email" [(ngModel)]="credentials.email" id="email" class="form-control"
+           placeholder="Digite seu e-mail" required autofocus>
+    <label for="password" class="sr-only">Password</label>
+    <input type="password" name="password" id="password" [(ngModel)]="credentials.password" class="form-control"
+           placeholder="Digite sua senha" required>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
 </form>
